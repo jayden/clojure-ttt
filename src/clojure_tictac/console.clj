@@ -1,4 +1,5 @@
-(ns clojure_tictac.console)
+(ns clojure_tictac.console
+	(:require [clojure_tictac.board :refer [board-size]]))
 
 (defn get-move [] (read-line))
 
@@ -15,7 +16,7 @@
 	(str (clojure.string/join " | " (replace-nil row)) "\n"))
 
 (defn show-board [board]
-	(loop [rows board board-string ""]
+	(loop [rows (partition (board-size board) board) board-string ""]
 		(if (= 0 (count rows))
 			board-string
 			(let [row (first rows)
