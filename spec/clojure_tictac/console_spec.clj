@@ -7,17 +7,25 @@
 	(with empty-board [nil nil nil nil nil nil nil nil nil])
 	(with test-board ["x" "o" "x" "o" "x" "o" "x" "o" "x"])
 
-	(it "gets input from console"
-		(should= "hello world" (with-in-str "hello world" (get-move))))
 	(it "prints to console with newline"
 		(should= "hey\n" (with-out-str (show-message "hey"))))
-	(it "asks for and gets a message from console"
-		(should= "hi computer" (with-in-str "hi computer" (prompt "hi human"))))
+
+	(it "gets input"
+		(should= 8 (with-in-str "8" (get-input (range 9))))
+		(should-throw 
+						(with-out-str (with-in-str "10" (get-input (range 9))))))
+
 	(it "changes nil to blank space"
-		(should= (list " " " " " " " " " " " " " " " " " ") (replace-nil @empty-board)))
+		(should= (list " " " " " " " " " " " " " " " " " ")
+						(replace-nil @empty-board)))
+	
 	(it "formats a row to print out"
-		(should= "x | o | x\n" (format-row (first (partition 3 @test-board)))))
-	(it "displays the board"
-		(should= "x | o | x\no | x | o\nx | o | x\n" (show-board @test-board))
-		(should= "  |   |  \n  |   |  \n  |   |  \n" (show-board @empty-board)))
+		(should= "x | o | x\n"
+						(format-row (first (partition 3 @test-board)))))
+	
+	(it "formats the board as a string"
+		(should= "x | o | x\no | x | o\nx | o | x\n"
+						(board-string @test-board))
+		(should= "  |   |  \n  |   |  \n  |   |  \n" 
+						(board-string @empty-board)))
 )
