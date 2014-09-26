@@ -50,7 +50,7 @@
 									(end-game)))
 
 	(it "shows game menu"
-		(should= (str (print-border) "\n1 - Human vs Computer\n2 - Computer vs Human\n3 - Human vs Human\n4 - Computer vs Computer\n0 - Quit\n" (print-border) "\n")
+		(should= (str (borderline) "\n1 - Human vs Computer\n2 - Computer vs Human\n3 - Human vs Human\n4 - Computer vs Computer\n0 - Quit\n" (borderline) "\n")
 							(with-out-str (show-game-menu))))
 
 	(context "starts a game"

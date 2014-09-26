@@ -41,7 +41,7 @@
 	Player
 	(marker [this] (:marker this))
 	(move [this board]
-		(show-message "Select a move: ")
+		(select-move-message)
 		(get-input (empty-spaces board))))
 
 (defrecord Computer [marker]

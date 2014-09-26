@@ -20,8 +20,8 @@
 
 (defn show-game-conclusion [board]
 	(if (winner? board)
-		(show-message (str (game-winner board) " wins!"))
-		(show-message "It's a draw!")))
+		(declare-winner (game-winner board))
+		(declare-draw)))
 
 (defn start [player-list new-board]
     (loop [board new-board
@@ -38,15 +38,15 @@
 	(shutdown-agents))
 
 (defn show-game-menu []
-	(show-message (print-border))
+	(show-message (borderline))
 	(str (map #(show-message (str (+ 1 (.indexOf game-types %)) " - " (first %) " vs " (second %))) game-types))
 	(show-message "0 - Quit")
-	(show-message (print-border)))
+	(show-message (borderline)))
 
 (defn play []
-	(show-message "Welcome to Tic-Tac-Toe!")
+	(welcome-message)
 	(show-game-menu)
-	(show-message "Select a game: ")
+	(select-game-message)
 	(let [type (get-input (range (+ 1 (count game-types))))]
 		(if (> type 0)
 			(start (player-list type) (make-board default-board-size))

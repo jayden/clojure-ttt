@@ -29,5 +29,20 @@
 (defn show-board [board]
 	(show-message (board-string board)))
 
-(defn print-border []
+(defn borderline []
 	"-------------------------")
+
+(defn declare-winner [game-winner]
+	(show-message (str game-winner " wins!")))
+
+(defn declare-draw []
+	(show-message "It's a draw!"))
+
+(defn welcome-message []
+	(show-message "Welcome to Tic-Tac-Toe!"))
+
+(defn select-game-message []
+	(show-message "Select a game: "))
+
+(defn select-move-message []
+	(show-message "Select a move: "))
